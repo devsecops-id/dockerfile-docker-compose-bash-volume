@@ -1,0 +1,14 @@
+version: "3.3"
+services: 
+    app:
+        build: 
+            context: . # Lokasi dockervile
+            dockerfile: Dockerfile # Nama Dockerfile
+        container_name: testing # Nama Container
+        tty: true # Agar container langsung dijanlankan setelah docker-compose up
+        restart: unless-stopped # dijalankan jika container stop saja
+        # restart: always # selalu dijalankan walaupun posisi stop ataupun pause
+        volumes: 
+            - ./vol:/home/percobaan # Volume memiliki format lokasi_host_os:lokasi_container, 
+                                    # untuk absolute path di awali dengan ./ jika di posisi directory utama
+        command: /bin/sh # Override bash script yg digunakan pada CMD dan ENTRYPOINT di Dockerfile
